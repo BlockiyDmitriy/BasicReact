@@ -4,16 +4,18 @@ import Element from './components/List/list-elements';
 import "./styles/style.css"
 
 function App() {
-    const [items, setItems] = useState([{ text: "qwertyuiolkmjnhgfdsazxcvbn" }]);
+    const [items, setItems] = useState([]);
 
     const deleteHandler = (index) => {
         const item = items.concat();
         item.splice(index, 1);
-        setItems({ item });
+        setItems(item);
     }
 
     const addHandler = (text) => {
-
+        const toDoItems = [...items]
+        const newArr = [...toDoItems, text]
+        setItems(newArr)
     }
 
     return (
@@ -28,7 +30,7 @@ function App() {
                         <Element
                             key={index}
                             index={index}
-                            text={item.text}
+                            text={item}
                             onDelete={deleteHandler}
                         />
                     );
