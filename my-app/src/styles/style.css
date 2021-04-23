@@ -1,0 +1,23 @@
+.myinput {
+    border: 2px solid rgb(0, 131, 253);
+    border-radius: 5px;
+}
+
+.container {
+    display: block;
+    max-width: 1440px;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3vh;
+}
+
+.elements {
+    display: flex;
+    padding-top: 5vh;
+}
+
+.element {
+    margin: 1vh;
+}

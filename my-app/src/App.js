@@ -1,20 +1,41 @@
-import React from 'react';
-import { Recoding } from './pages/index';
-
-const state = {
-  names: [
-    {name : 'This is your first recording 1'},
-    {name : 'This is your first recording 2'}
-    ]
-}
+import React, { useState } from 'react';
+import DataInput from './components/data-Input';
+import Element from './components/List/list-elements';
+import "./styles/style.css"
 
 function App() {
-  return (
-    <div>
-      <Recoding name={state.names[0].name} />
-      <Recoding name={state.names[1].name} />
-    </div>
-  );
-}
+    const [items, setItems] = useState([{ text: "qwertyuiolkmjnhgfdsazxcvbn" }]);
 
+    const deleteHandler = (index) => {
+        const item = items.concat();
+        item.splice(index, 1);
+        setItems({ item });
+    }
+
+    const addHandler = (text) => {
+
+    }
+
+    return (
+        <div className="container">
+            <div>
+                <DataInput
+                    onAdd={addHandler}
+                />
+
+                {items.length && items.map((item, index) => {
+                    return (
+                        <Element
+                            key={index}
+                            index={index}
+                            text={item.text}
+                            onDelete={deleteHandler}
+                        />
+                    );
+                })
+                }
+            </div>
+        </div>
+    );
+};
 export default App;
