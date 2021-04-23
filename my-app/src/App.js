@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import DataInput from './components/data-Input';
+import Element from './components/List/list-elements';
+import "./styles/style.css"
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    const [items, setItems] = useState([]);
 
+    const deleteHandler = (index) => {
+        const item = items.concat();
+        item.splice(index, 1);
+        setItems(item);
+    }
+
+    const addHandler = (text) => {
+        const toDoItems = [...items]
+        const newArr = [...toDoItems, text]
+        setItems(newArr)
+    }
+
+    return (
+        <div className="container">
+            <div>
+                <DataInput
+                    onAdd={addHandler}
+                />
+
+                {items.length && items.map((item, index) => {
+                    return (
+                        <Element
+                            key={index}
+                            index={index}
+                            text={item}
+                            onDelete={deleteHandler}
+                        />
+                    );
+                })
+                }
+            </div>
+        </div>
+    );
+};
 export default App;
